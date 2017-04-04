@@ -1,14 +1,26 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Kunder Comics
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+    <ion-list>
+        <button ion-item *ngFor="let comic of listComics"  icon-left>
+            <ion-thumbnail item-left *ngIf="comic.thumbnail">
+                <img src={{comic.thumbnail.path}}.{{comic.thumbnail.extension}}>
+            </ion-thumbnail>
+            <h2>{{comic.title}}</h2>
+            <h3>
+              <div *ngFor="let date of comic.dates">
+                <div *ngIf="date.type=='onsaleDate'">publicado: {{date.date | date: 'dd MMMM yyyy'}}</div>
+              </div>
+            </h3>
+            <h4>
+              {{comic.description}}
+            </h4>
+        </button>
+    </ion-list>
 </ion-content>
