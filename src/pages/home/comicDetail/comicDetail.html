@@ -1,0 +1,79 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{comic.title}}</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+
+    <ion-card>
+    <img *ngIf="comic.images" src={{comic.images[0].path}}.{{comic.images[0].extension}}/>
+    <ion-card-content>
+        <ion-card-title>
+            {{comic.series.name}}
+      </ion-card-title>
+
+        <ion-segment [(ngModel)]="section">
+            <ion-segment-button value="description">
+            Descripción
+            </ion-segment-button>
+            <ion-segment-button value="characters">
+            Personajes
+            </ion-segment-button>
+            <ion-segment-button value="creators">
+            Creadores
+            </ion-segment-button>
+        </ion-segment>
+
+        <div [ngSwitch]="section">
+            <p *ngSwitchCase="'description'">
+                {{comic.description}}
+            </p>
+            <p *ngSwitchCase="'characters'">
+                <ion-list>
+                    <ion-item *ngFor="let character of characters">
+                        <ion-avatar item-left>
+                        <img src={{character.thumbnail.path}}.{{character.thumbnail.extension}}\>
+                        </ion-avatar>
+                        <h2>{{character.name}}</h2>
+                        <p>{{character.description}}</p>
+                    </ion-item>
+                </ion-list>
+            </p>
+            <p *ngSwitchCase="'creators'">
+                <ion-list>
+                    <ion-item *ngFor="let creator of creators">
+                        <ion-avatar item-left>
+                        <img src={{creator.thumbnail.path}}.{{creator.thumbnail.extension}}\>
+                        </ion-avatar>
+                        <h2>{{creator.fullName}}</h2>
+                    </ion-item>
+                </ion-list>
+            </p>
+        </div>
+
+    <ion-row no-padding>
+      <ion-col>
+        <button ion-button clear small color="danger" icon-left>
+          <ion-icon name='star'></ion-icon>
+          Favorito
+        </button>
+      </ion-col>
+      <ion-col text-center>
+        <button ion-button clear small color="danger" icon-left>
+          <ion-icon name='logo-usd'></ion-icon>
+            <div *ngFor="let price of comic.prices">
+                <div *ngIf="price.type=='printPrice'">{{price.price}}</div>
+                <div *ngIf="price.type!=='printPrice'">-</div>
+            </div>
+        </button>
+      </ion-col>
+      <ion-col text-right>
+        <button ion-button clear small color="danger" icon-left>
+          <ion-icon name='share-alt'></ion-icon>
+          Compartir
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card-content>
+</ion-card>
+</ion-content>

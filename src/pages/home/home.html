@@ -8,7 +8,7 @@
 
 <ion-content padding>
     <ion-list>
-        <button ion-item *ngFor="let comic of listComics"  icon-left>
+        <button ion-item *ngFor="let comic of listComics" (click)="openComicDetail(comic)" icon-left>
             <ion-thumbnail item-left *ngIf="comic.thumbnail">
                 <img src={{comic.thumbnail.path}}.{{comic.thumbnail.extension}}>
             </ion-thumbnail>
