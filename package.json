@@ -1,7 +1,6 @@
 {
-  "name": "ionic-hello-world",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "name": "kunder-comic",
+  "author": "Kunder comic",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
@@ -50,5 +49,5 @@
       "locator": "ios"
     }
   ],
-  "description": ": An Ionic project"
+  "description": ": Kunder comic app"
 }
