@@ -29,12 +29,21 @@ export class HomePage{
                             prices:e.prices,
                             dates:e.dates});
                         });
+                        this._list=this.listComics;
                       });
   }
   openComicDetail(comic){
     this.navCtrl.push(comicDetail, {comic: comic});
   }
   getItems(ev){
+    this.listComics = this._list;
+    let val = ev.target.value;
 
+    if (val && val.trim() != '') {
+      this.listComics = this.listComics.filter((item) => {
+        return (item.title.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      });
+
+    }
   }
 }
