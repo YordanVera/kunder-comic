@@ -1,5 +1,5 @@
 import { Component }    from '@angular/core';
-import { NavParams }    from 'ionic-angular';
+import { NavParams, ToastController }    from 'ionic-angular';
 import { ComicService } from '../../../services/comic.service';
 
 @Component({
@@ -14,6 +14,7 @@ export class comicDetail{
     private characters;
     private creators;
     constructor(params: NavParams,
+                private toastCtrl: ToastController,
                 private comicService: ComicService){
         this.comic = params.data.comic;
         this.loadCharacters(this.comic.id);
@@ -33,6 +34,21 @@ export class comicDetail{
                 this.creators = data.json().data.results;
             }
         );
-
+    }
+    favorite(comic){
+        let toast = this.toastCtrl.create({
+            message: comic.title+' ha sido agregado a favoritos',
+            position: 'top',
+            duration: 3000
+        });
+        toast.present();
+    }
+    share(comic){
+        let toast = this.toastCtrl.create({
+            message: comic.title+' ha sido compartido',
+            position: 'top',
+            duration: 3000
+        });
+        toast.present();
     }
 }
